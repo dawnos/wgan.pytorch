@@ -1,0 +1,11 @@
+mode: "wgan-gp"
+dataset: "gaussians25"
+dim: 512
+fix_generator: false
+lambda1: 0.1
+critic_iters: 5
+batch_size: 256
+iters: 100000
+lr: 0.0001
+beta1: 0.5
+beta2: 0.9
