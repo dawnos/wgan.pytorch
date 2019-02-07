@@ -15,6 +15,7 @@ class Generator(nn.Module):
     super(Generator, self).__init__()
 
     self.batch_size = args.batch_size
+    self.device = args.device
     self.net = nn.Sequential(
       nn.Linear(2, args.dim),
       nn.ReLU(inplace=True),
@@ -26,7 +27,7 @@ class Generator(nn.Module):
     )
   
   def forward(self):
-    x = torch.randn([self.batch_size, 2])
+    x = torch.randn([self.batch_size, 2]).to(self.device)
     return self.net(x)
 
 
@@ -84,7 +85,13 @@ class Gaussians25(torch.utils.data.Dataset):
 def main():
   args = get_config('config/toy.yaml')
 
-  net = ToyNet(args)
+  if torch.cuda.is_available():
+    args.device = torch.device(args.gpu)
+  else:
+    print("Using CPU")
+    args.device = torch.device("cpu")
+
+  net = ToyNet(args).to(args.device)
   trainer = WGANTrainer(net, args)
 
   if args.dataset == "gaussians25":
