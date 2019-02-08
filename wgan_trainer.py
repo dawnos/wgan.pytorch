@@ -73,7 +73,7 @@ class WGANTrainer(object):
           plt.plot(fake_data[:, 0], fake_data[:, 1], '+', color='green')
           plt.title('Step=%d' % step)
           # plt.show()
-          plt.savefig("log/map_%06d.png" % step, format="png")
+          plt.savefig("%s/map_%06d.png" % (args.log_dir, step), format="png")
 
         self.net.train()
 

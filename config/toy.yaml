@@ -1,5 +1,5 @@
 mode: "wgan-gp"
-dataset: "gaussians25"
+dataset: "swissroll"
 dim: 512
 fix_generator: false
 lambda1: 0.1
@@ -12,5 +12,5 @@ beta1: 0.5
 beta2: 0.9
 map_point_num: 128
 map_point_range: 3
-gpu: 0
-log_dir: "./log/gaussians25"
+gpu: 3
+log_dir: "./log/swissroll"
